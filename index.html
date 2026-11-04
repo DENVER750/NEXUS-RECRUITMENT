@@ -1,0 +1,618 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Placement Ltd – UK & Canada Jobs & Immigration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        html { scroll-behavior: smooth; }
+        .job-card:hover { transform: translateY(-3px); transition: all 0.2s ease; }
+
+        /* 3D Flip Animation for Logos */
+        .flip-3d {
+            animation: flip3D 6s infinite linear;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        @keyframes flip3D {
+            0%   { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+        }
+
+        /* Floating WhatsApp Apply button */
+        .floating-apply {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 100;
+            width: 64px;
+            height: 64px;
+            border-radius: 9999px;
+            background: #000;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 0 25px 6px rgba(37, 211, 102, 0.7),
+                        0 0 60px 20px rgba(37, 211, 102, 0.35),
+                        0 0 100px 35px rgba(37, 211, 102, 0.15);
+            transition: all 0.3s ease;
+            animation: glowPulse 2.4s infinite ease-in-out;
+        }
+        .floating-apply:hover { transform: scale(1.08); }
+        @keyframes glowPulse {
+            0%, 100% { box-shadow: 0 0 25px 6px rgba(37, 211, 102, 0.7),
+                                   0 0 60px 20px rgba(37, 211, 102, 0.35),
+                                   0 0 100px 35px rgba(37, 211, 102, 0.15); }
+            50% { box-shadow: 0 0 35px 12px rgba(37, 211, 102, 0.9),
+                              0 0 80px 30px rgba(37, 211, 102, 0.5),
+                              0 0 130px 50px rgba(37, 211, 102, 0.25); }
+        }
+
+        /* Floating 24/7 Support button (left side) */
+        .floating-support {
+            position: fixed;
+            bottom: 28px;
+            left: 28px;
+            z-index: 100;
+            width: 64px;
+            height: 64px;
+            border-radius: 9999px;
+            background: #000;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 0 25px 6px rgba(99, 102, 241, 0.7),
+                        0 0 60px 20px rgba(99, 102, 241, 0.35),
+                        0 0 100px 35px rgba(99, 102, 241, 0.15);
+            transition: all 0.3s ease;
+            animation: supportGlow 2.4s infinite ease-in-out;
+        }
+        .floating-support:hover { transform: scale(1.08); }
+        .floating-support .support-label {
+            position: absolute;
+            left: 74px;
+            white-space: nowrap;
+            background: #000;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(99, 102, 241, 0.6);
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.6);
+            opacity: 0;
+            transform: translateX(-8px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+        .floating-support:hover .support-label {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        @keyframes supportGlow {
+            0%, 100% { box-shadow: 0 0 25px 6px rgba(99, 102, 241, 0.7),
+                                   0 0 60px 20px rgba(99, 102, 241, 0.35),
+                                   0 0 100px 35px rgba(99, 102, 241, 0.15); }
+            50% { box-shadow: 0 0 35px 12px rgba(99, 102, 241, 0.9),
+                              0 0 80px 30px rgba(99, 102, 241, 0.5),
+                              0 0 130px 50px rgba(99, 102, 241, 0.25); }
+        }
+
+        /* Neon footer buttons */
+        .neon-btn {
+            position: relative;
+            padding: 10px 22px;
+            border-radius: 10px;
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.875rem;
+            letter-spacing: 0.5px;
+            background: #000;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .neon-btn:hover { transform: translateY(-2px); }
+        .neon-whatsapp { box-shadow: 0 0 8px #25d366, 0 0 18px #25d366, inset 0 0 4px #25d366; border: 1px solid #25d366; }
+        .neon-whatsapp:hover { box-shadow: 0 0 12px #25d366, 0 0 30px #25d366, 0 0 45px #25d366, inset 0 0 6px #25d366; }
+        .neon-facebook { box-shadow: 0 0 8px #1877f2, 0 0 18px #1877f2, inset 0 0 4px #1877f2; border: 1px solid #1877f2; }
+        .neon-email { box-shadow: 0 0 8px #ff6b6b, 0 0 18px #ff6b6b, inset 0 0 4px #ff6b6b; border: 1px solid #ff6b6b; }
+        .neon-email:hover { box-shadow: 0 0 12px #ff6b6b, 0 0 30px #ff6b6b, 0 0 45px #ff6b6b, inset 0 0 6px #ff6b6b; }
+        .neon-subscribe { box-shadow: 0 0 8px #a855f7, 0 0 18px #a855f7, inset 0 0 4px #a855f7; border: 1px solid #a855f7; }
+        .neon-subscribe:hover { box-shadow: 0 0 12px #a855f7, 0 0 30px #a855f7, 0 0 45px #a855f7, inset 0 0 6px #a855f7; }
+
+        /* Dancing/waving emoji animation */
+        .dancing-emoji {
+            display: inline-block;
+            font-size: 1.6rem;
+            animation: danceWave 1.4s infinite ease-in-out;
+            transform-origin: 70% 70%;
+        }
+        @keyframes danceWave {
+            0%   { transform: rotate(0deg)   scale(1); }
+            15%  { transform: rotate(14deg)  scale(1.05); }
+            30%  { transform: rotate(-8deg)  scale(1); }
+            45%  { transform: rotate(14deg)  scale(1.05); }
+            60%  { transform: rotate(-4deg)  scale(1); }
+            75%  { transform: rotate(10deg)  scale(1.05); }
+            100% { transform: rotate(0deg)   scale(1); }
+        }
+
+        /* Glass logo container */
+        .glass-logo {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(99, 102, 241, 0.35),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            padding: 6px 10px;
+        }
+        
+        /* Large Glass logo container */
+        .glass-logo-large {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 24px;
+            box-shadow: 0 12px 48px rgba(99, 102, 241, 0.45),
+                        inset 0 2px 0 rgba(255, 255, 255, 0.6);
+            padding: 16px 24px;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800 bg-gray-50">
+
+    <!-- ========== NAVIGATION BAR ========== -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Glass Logo with SVG layering and 3D Flip -->
+                <a href="#home" class="flex items-center gap-3">
+                    <div class="glass-logo flip-3d">
+                        <svg width="42" height="42" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="gradA" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#6366f1"/>
+                                    <stop offset="100%" stop-color="#a855f7"/>
+                                </linearGradient>
+                                <linearGradient id="gradB" x1="0%" y1="100%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#22d3ee"/>
+                                    <stop offset="100%" stop-color="#6366f1"/>
+                                </linearGradient>
+                            </defs>
+                            <polygon points="32,2 60,17 60,47 32,62 4,47 4,17" fill="url(#gradA)" opacity="0.95"/>
+                            <polygon points="32,10 53,21 53,43 32,54 11,43 11,21" fill="url(#gradB)" opacity="0.55"/>
+                            <path d="M22 44 V20 L42 44 V20" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                            <circle cx="32" cy="32" r="3.5" fill="#ffffff" opacity="0.9"/>
+                        </svg>
+                    </div>
+                    <span class="text-xl font-bold text-indigo-700 hidden sm:inline">NEXUS PLACEMENT LTD</span>
+                </a>
+
+                <!-- Desktop navigation -->
+                <nav class="hidden md:flex space-x-6 text-sm font-medium">
+                    <a href="#home" class="text-gray-700 hover:text-indigo-600">Home</a>
+                    <a href="#services" class="text-gray-700 hover:text-indigo-600">Our Services</a>
+                    <a href="#jobs" class="text-gray-700 hover:text-indigo-600">Jobs</a>
+                    <a href="#visa-services" class="text-gray-700 hover:text-indigo-600">Visa Services</a>
+                    <a href="#why-trust" class="text-gray-700 hover:text-indigo-600">Why People Trust Us</a>
+                    <a href="#contact" class="text-gray-700 hover:text-indigo-600">Contact</a>
+                </nav>
+
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-indigo-600 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <div class="flex flex-col space-y-2 text-sm font-medium">
+                    <a href="#home" class="text-gray-700 hover:text-indigo-600 px-2 py-1">Home</a>
+                    <a href="#services" class="text-gray-700 hover:text-indigo-600 px-2 py-1">Our Services</a>
+                    <a href="#jobs" class="text-gray-700 hover:text-indigo-600 px-2 py-1">Jobs</a>
+                    <a href="#visa-services" class="text-gray-700 hover:text-indigo-600 px-2 py-1">Visa Services</a>
+                    <a href="#why-trust" class="text-gray-700 hover:text-indigo-600 px-2 py-1">Why People Trust Us</a>
+                    <a href="#contact" class="text-gray-700 hover:text-indigo-600 px-2 py-1">Contact</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- HERO -->
+        <section id="home" class="mb-12 text-center md:text-left">
+            <!-- Applied background image with semi-transparent white overlay for readability -->
+            <div class="relative bg-cover bg-center rounded-xl overflow-hidden shadow-lg p-8 md:p-12 mb-6" style="background-image: url('https://images.unsplash.com/photo-1549488344-1f9b8d2bd1f3?auto=format&fit=crop&q=80&w=1600');">
+                <!-- White overlay -->
+                <div class="absolute inset-0 bg-white/85 backdrop-blur-sm"></div>
+                
+                <!-- Content inside the background container -->
+                <div class="relative z-10 flex flex-col items-center md:items-start">
+                    
+                    <!-- LARGE NEXUS LOGO WITH 3D FLIP ANIMATION -->
+                    <div class="glass-logo-large mb-6 inline-block shadow-2xl flip-3d">
+                        <svg width="120" height="120" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" class="drop-shadow-xl">
+                            <defs>
+                                <linearGradient id="gradA-large" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#6366f1"/>
+                                    <stop offset="100%" stop-color="#a855f7"/>
+                                </linearGradient>
+                                <linearGradient id="gradB-large" x1="0%" y1="100%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#22d3ee"/>
+                                    <stop offset="100%" stop-color="#6366f1"/>
+                                </linearGradient>
+                            </defs>
+                            <polygon points="32,2 60,17 60,47 32,62 4,47 4,17" fill="url(#gradA-large)" opacity="0.95"/>
+                            <polygon points="32,10 53,21 53,43 32,54 11,43 11,21" fill="url(#gradB-large)" opacity="0.55"/>
+                            <path d="M22 44 V20 L42 44 V20" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                            <circle cx="32" cy="32" r="3.5" fill="#ffffff" opacity="0.9"/>
+                        </svg>
+                    </div>
+
+                    <h1 class="text-3xl md:text-4xl font-bold text-indigo-800 mb-4">NEXUS PLACEMENT LTD</h1>
+                    <p class="text-lg text-gray-700 max-w-4xl mx-auto md:mx-0 text-center md:text-left">
+                        NEXUS PLACEMENT is your trusted partner for UK and Canada job placements and immigration services. 
+                        We connect talented individuals with verified employers across the United Kingdom and Canada, offering 
+                        full-time positions with competitive salaries, free accommodation, and visa support. Our mission is to 
+                        make your transition to the UK seamless and rewarding.
+                    </p>
+                </div>
+            </div>
+
+            <!-- ===== OFFICIAL DISCLAIMER ===== -->
+            <div class="mt-6 bg-amber-50 border-l-4 border-amber-500 p-5 rounded-r-lg text-left max-w-4xl mx-auto md:mx-0">
+                <h2 class="text-lg font-bold text-amber-800 mb-2">Official Disclaimer</h2>
+                <p class="text-sm text-amber-900 leading-relaxed">
+                    Nexus Placement Ltd will never request visa fees, consultation fees, or interview fees. 
+                    Consultations and inquiries are entirely free of charge, as this is a sponsorship program. 
+                    Representatives available on our contact line will provide personalized guidance throughout 
+                    the process, along with access to a verified portal database and NEA verification tools.
+                </p>
+            </div>
+        </section>
+
+        <!-- ===== NEW PHOTO BETWEEN DISCLAIMER AND OUR SERVICES (UK Flag) ===== -->
+        <div class="my-12 w-full flex justify-center">
+            <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&q=80&w=1200" 
+                 alt="United Kingdom Flag" 
+                 class="w-full max-w-5xl h-auto max-h-[450px] rounded-2xl shadow-xl border border-gray-200 object-cover">
+        </div>
+
+        <!-- OUR SERVICES -->
+        <section id="services" class="mb-16 scroll-mt-20">
+            <h2 class="text-2xl font-bold text-indigo-800 border-b-2 border-indigo-200 pb-2 mb-6">Our Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
+                    <i class="fas fa-plane text-indigo-600 text-2xl mb-3"></i>
+                    <h3 class="text-xl font-semibold mb-2">Visa & Flight</h3>
+                    <p class="text-gray-600 text-sm">We handle visa applications and arrange flights, ensuring a smooth journey from your home country to the UK or Canada.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
+                    <i class="fas fa-home text-indigo-600 text-2xl mb-3"></i>
+                    <h3 class="text-xl font-semibold mb-2">Free Accommodation</h3>
+                    <p class="text-gray-600 text-sm">Complimentary accommodation is provided for the first month, giving you time to settle in and find your own place.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
+                    <i class="fas fa-heartbeat text-indigo-600 text-2xl mb-3"></i>
+                    <h3 class="text-xl font-semibold mb-2">Medical Insurance</h3>
+                    <p class="text-gray-600 text-sm">We offer health insurance coverage for your initial period, ensuring access to medical care when you need it.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
+                    <i class="fas fa-hands-helping text-indigo-600 text-2xl mb-3"></i>
+                    <h3 class="text-xl font-semibold mb-2">Support All The Way</h3>
+                    <p class="text-gray-600 text-sm">From application to arrival, our team provides 24/7 support, helping with paperwork, housing, and local orientation.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
+                    <i class="fas fa-check-circle text-indigo-600 text-2xl mb-3"></i>
+                    <h3 class="text-xl font-semibold mb-2">Trusted Employers</h3>
+                    <p class="text-gray-600 text-sm">We partner only with verified employers who meet our standards for fair pay, safe conditions, and ethical treatment.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- JOB LISTINGS -->
+        <section id="jobs" class="mb-16 scroll-mt-20">
+            <h2 class="text-2xl font-bold text-indigo-800 border-b-2 border-indigo-200 pb-2 mb-6">Job Openings</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Caregiver -->
+                <div class="bg-white rounded-lg shadow-md p-5 job-card transition flex flex-col">
+                    <h3 class="text-xl font-bold text-indigo-700 mb-3">Caregiver</h3>
+                    <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&q=80&w=800" alt="Caregiver" class="w-full h-40 object-cover rounded-md mb-3">
+                    <p class="text-sm text-gray-500 mt-1"><i class="fas fa-pound-sign mr-1"></i>£12.50 - £14.00 per hour</p>
+                    <p class="text-sm text-gray-600 mt-2"><span class="font-semibold">Benefits:</span> Free accommodation, medical insurance, paid training, flexible shifts.</p>
+                    <p class="text-sm text-gray-600 mt-1 flex-grow"><span class="font-semibold">Requirements:</span> Passport, IOM medical certificate, 1+ year experience.</p>
+                    <a href="https://wa.me/447475331035?text=Hello%20Nexus%2C%20I'd%20like%20to%20apply%20for%20the%20Caregiver%20job%20position.%20Kindly%20take%20me%20through." target="_blank" class="mt-4 inline-block bg-indigo-600 hover:bg-indigo-700 text-white text-center font-medium py-2 px-4 rounded transition text-sm">Apply</a>
+                </div>
+                <!-- Health Assistant -->
+                <div class="bg-white rounded-lg shadow-md p-5 job-card transition flex flex-col">
+                    <h3 class="text-xl font-bold text-indigo-700 mb-3">Health Assistant</h3>
+                    <img src="https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&q=80&w=800" alt="Health Assistant" class="w-full h-40 object-cover rounded-md mb-3">
+                    <p class="text-sm text-gray-500 mt-1"><i class="fas fa-pound-sign mr-1"></i>£11.50 - £13.00 per hour</p>
+                    <p class="text-sm text-gray-600 mt-2"><span class="font-semibold">Benefits:</span> Free accommodation, medical insurance, pension, career progression.</p>
+                    <p class="text-sm text-gray-600 mt-1 flex-grow"><span class="font-semibold">Requirements:</span> Passport, IOM medical certificate, 6 months experience.</p>
+                    <a href="https://wa.me/447475331035?text=Hello%20Nexus%2C%20I'd%20like%20to%20apply%20for%20the%20Health%20Assistant%20job%20position.%20Kindly%20take%20me%20through." target="_blank" class="mt-4 inline-block bg-indigo-600 hover:bg-indigo-700 text-white text-center font-medium py-2 px-4 rounded transition text-sm">Apply</a>
+                </div>
+                <!-- Warehouse Work -->
+                <div class="bg-white rounded-lg shadow-md p-5 job-card transition flex flex-col">
+                    <h3 class="text-xl font-bold text-indigo-700 mb-3">Warehouse Work</h3>
+                    <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800" alt="Warehouse Work" class="w-full h-40 object-cover rounded-md mb-3">
+                    <p class="text-sm text-gray-500 mt-1"><i class="fas fa-pound-sign mr-1"></i>£10.50 - £12.00 per hour</p>
+                    <p class="text-sm text-gray-600 mt-2"><span class="font-semibold">Benefits:</span> Free accommodation, medical insurance, overtime pay, transport.</p>
+                    <p class="text-sm text-gray-600 mt-1 flex-grow"><span class="font-semibold">Requirements:</span> Passport, IOM medical certificate, no experience needed (training provided).</p>
+                    <a href="https://wa.me/447475331035?text=Hello%20Nexus%2C%20I'd%20like%20to%20apply%20for%20the%20Warehouse%20Work%20job%20position.%20Kindly%20take%20me%20through." target="_blank" class="mt-4 inline-block bg-indigo-600 hover:bg-indigo-700 text-white text-center font-medium py-2 px-4 rounded transition text-sm">Apply</a>
+                </div>
+                <!-- Cleaner -->
+                <div class="bg-white rounded-lg shadow-md p-5 job-card transition flex flex-col">
+                    <h3 class="text-xl font-bold text-indigo-700 mb-3">Cleaner</h3>
+                    <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80&w=800" alt="Cleaner" class="w-full h-40 object-cover rounded-md mb-3">
+                    <p class="text-sm text-gray-500 mt-1"><i class="fas fa-pound-sign mr-1"></i>£10.00 - £11.50 per hour</p>
+                    <p class="text-sm text-gray-600 mt-2"><span class="font-semibold">Benefits:</span> Free accommodation, medical insurance, uniforms, flexible hours.</p>
+                    <p class="text-sm text-gray-600 mt-1 flex-grow"><span class="font-semibold">Requirements:</span> Passport, IOM medical certificate, 3 months experience.</p>
+                    <a href="https://wa.me/447475331035?text=Hello%20Nexus%2C%20I'd%20like%20to%20apply%20for%20the%20Cleaner%20job%20position.%20Kindly%20take%20me%20through." target="_blank" class="mt-4 inline-block bg-indigo-600 hover:bg-indigo-700 text-white text-center font-medium py-2 px-4 rounded transition text-sm">Apply</a>
+                </div>
+                <!-- Housekeeper -->
+                <div class="bg-white rounded-lg shadow-md p-5 job-card transition flex flex-col">
+                    <h3 class="text-xl font-bold text-indigo-700 mb-3">Housekeeper</h3>
+                    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800" alt="Housekeeper" class="w-full h-40 object-cover rounded-md mb-3">
+                    <p class="text-sm text-gray-500 mt-1"><i class="fas fa-pound-sign mr-1"></i>£10.50 - £12.00 per hour</p>
+                    <p class="text-sm text-gray-600 mt-2"><span class="font-semibold">Benefits:</span> Free accommodation, medical insurance, meals on duty, tips.</p>
+                    <p class="text-sm text-gray-600 mt-1 flex-grow"><span class="font-semibold">Requirements:</span> Passport, IOM medical certificate, 6 months experience.</p>
+                    <a href="https://wa.me/447475331035?text=Hello%20Nexus%2C%20I'd%20like%20to%20apply%20for%20the%20Housekeeper%20job%20position.%20Kindly%20take%20me%20through." target="_blank" class="mt-4 inline-block bg-indigo-600 hover:bg-indigo-700 text-white text-center font-medium py-2 px-4 rounded transition text-sm">Apply</a>
+                </div>
+                <!-- Nanny -->
+                <div class="bg-white rounded-lg shadow-md p-5 job-card transition flex flex-col">
+                    <h3 class="text-xl font-bold text-indigo-700 mb-3">Nanny</h3>
+                    <img src="https://images.unsplash.com/photo-1544813545-4827b64fcacb?auto=format&fit=crop&q=80&w=800" alt="Nanny" class="w-full h-40 object-cover rounded-md mb-3">
+                    <p class="text-sm text-gray-500 mt-1"><i class="fas fa-pound-sign mr-1"></i>£12.00 - £14.50 per hour</p>
+                    <p class="text-sm text-gray-600 mt-2"><span class="font-semibold">Benefits:</span> Free accommodation, medical insurance, paid holidays, meals.</p>
+                    <p class="text-sm text-gray-600 mt-1 flex-grow"><span class="font-semibold">Requirements:</span> Passport, IOM medical certificate, 2+ years childcare experience.</p>
+                    <a href="https://wa.me/447475331035?text=Hello%20Nexus%2C%20I'd%20like%20to%20apply%20for%20the%20Nanny%20job%20position.%20Kindly%20take%20me%20through." target="_blank" class="mt-4 inline-block bg-indigo-600 hover:bg-indigo-700 text-white text-center font-medium py-2 px-4 rounded transition text-sm">Apply</a>
+                </div>
+                <!-- Farm Workers -->
+                <div class="bg-white rounded-lg shadow-md p-5 job-card transition flex flex-col">
+                    <h3 class="text-xl font-bold text-indigo-700 mb-3">Farm Workers</h3>
+                    <img src="https://images.unsplash.com/photo-1590682680695-43b964a3ae17?auto=format&fit=crop&q=80&w=800" alt="Farm Workers" class="w-full h-40 object-cover rounded-md mb-3">
+                    <p class="text-sm text-gray-500 mt-1"><i class="fas fa-pound-sign mr-1"></i>£10.00 - £12.50 per hour</p>
+                    <p class="text-sm text-gray-600 mt-2"><span class="font-semibold">Benefits:</span> Free accommodation, medical insurance, seasonal bonuses, transport.</p>
+                    <p class="text-sm text-gray-600 mt-1 flex-grow"><span class="font-semibold">Requirements:</span> Passport, IOM medical certificate, physical fitness, no formal experience required.</p>
+                    <a href="https://wa.me/447475331035?text=Hello%20Nexus%2C%20I'd%20like%20to%20apply%20for%20the%20Farm%20Workers%20job%20position.%20Kindly%20take%20me%20through." target="_blank" class="mt-4 inline-block bg-indigo-600 hover:bg-indigo-700 text-white text-center font-medium py-2 px-4 rounded transition text-sm">Apply</a>
+                </div>
+                <!-- Security Guard -->
+                <div class="bg-white rounded-lg shadow-md p-5 job-card transition flex flex-col">
+                    <h3 class="text-xl font-bold text-indigo-700 mb-3">Security Guard</h3>
+                    <img src="https://images.unsplash.com/photo-1555636222-cae831e670b3?auto=format&fit=crop&q=80&w=800" alt="Security Guard" class="w-full h-40 object-cover rounded-md mb-3">
+                    <p class="text-sm text-gray-500 mt-1"><i class="fas fa-pound-sign mr-1"></i>£11.50 - £13.50 per hour</p>
+                    <p class="text-sm text-gray-600 mt-2"><span class="font-semibold">Benefits:</span> Free accommodation, medical insurance, SIA training support, pension.</p>
+                    <p class="text-sm text-gray-600 mt-1 flex-grow"><span class="font-semibold">Requirements:</span> Passport, IOM medical certificate, 1 year security experience.</p>
+                    <a href="https://wa.me/447475331035?text=Hello%20Nexus%2C%20I'd%20like%20to%20apply%20for%20the%20Security%20Guard%20job%20position.%20Kindly%20take%20me%20through." target="_blank" class="mt-4 inline-block bg-indigo-600 hover:bg-indigo-700 text-white text-center font-medium py-2 px-4 rounded transition text-sm">Apply</a>
+                </div>
+                <!-- Hotel Room Attendant -->
+                <div class="bg-white rounded-lg shadow-md p-5 job-card transition flex flex-col">
+                    <h3 class="text-xl font-bold text-indigo-700 mb-3">Hotel Room Attendant</h3>
+                    <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&q=80&w=800" alt="Hotel Room Attendant" class="w-full h-40 object-cover rounded-md mb-3">
+                    <p class="text-sm text-gray-500 mt-1"><i class="fas fa-pound-sign mr-1"></i>£10.00 - £11.50 per hour</p>
+                    <p class="text-sm text-gray-600 mt-2"><span class="font-semibold">Benefits:</span> Free accommodation, medical insurance, meals, uniform.</p>
+                    <p class="text-sm text-gray-600 mt-1 flex-grow"><span class="font-semibold">Requirements:</span> Passport, IOM medical certificate, 3 months experience.</p>
+                    <a href="https://wa.me/447475331035?text=Hello%20Nexus%2C%20I'd%20like%20to%20apply%20for%20the%20Hotel%20Room%20Attendant%20job%20position.%20Kindly%20take%20me%20through." target="_blank" class="mt-4 inline-block bg-indigo-600 hover:bg-indigo-700 text-white text-center font-medium py-2 px-4 rounded transition text-sm">Apply</a>
+                </div>
+                <!-- Delivery Driver -->
+                <div class="bg-white rounded-lg shadow-md p-5 job-card transition flex flex-col">
+                    <h3 class="text-xl font-bold text-indigo-700 mb-3">Delivery Driver</h3>
+                    <img src="https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&q=80&w=800" alt="Delivery Driver" class="w-full h-40 object-cover rounded-md mb-3">
+                    <p class="text-sm text-gray-500 mt-1"><i class="fas fa-pound-sign mr-1"></i>£12.00 - £14.00 per hour</p>
+                    <p class="text-sm text-gray-600 mt-2"><span class="font-semibold">Benefits:</span> Free accommodation, medical insurance, fuel allowance, vehicle provided.</p>
+                    <p class="text-sm text-gray-600 mt-1 flex-grow"><span class="font-semibold">Requirements:</span> Passport, IOM medical certificate, valid driving licence, 1 year experience.</p>
+                    <a href="https://wa.me/447475331035?text=Hello%20Nexus%2C%20I'd%20like%20to%20apply%20for%20the%20Delivery%20Driver%20job%20position.%20Kindly%20take%20me%20through." target="_blank" class="mt-4 inline-block bg-indigo-600 hover:bg-indigo-700 text-white text-center font-medium py-2 px-4 rounded transition text-sm">Apply</a>
+                </div>
+                <!-- Waiter/Waitress -->
+                <div class="bg-white rounded-lg shadow-md p-5 job-card transition flex flex-col">
+                    <h3 class="text-xl font-bold text-indigo-700 mb-3">Waiter / Waitress</h3>
+                    <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&q=80&w=800" alt="Waiter/Waitress" class="w-full h-40 object-cover rounded-md mb-3">
+                    <p class="text-sm text-gray-500 mt-1"><i class="fas fa-pound-sign mr-1"></i>£9.50 - £11.00 per hour + tips</p>
+                    <p class="text-sm text-gray-600 mt-2"><span class="font-semibold">Benefits:</span> Free accommodation, medical insurance, meals, share of tips.</p>
+                    <p class="text-sm text-gray-600 mt-1 flex-grow"><span class="font-semibold">Requirements:</span> Passport, IOM medical certificate, 6 months hospitality experience.</p>
+                    <a href="https://wa.me/447475331035?text=Hello%20Nexus%2C%20I'd%20like%20to%20apply%20for%20the%20Waiter%2FWaitress%20job%20position.%20Kindly%20take%20me%20through." target="_blank" class="mt-4 inline-block bg-indigo-600 hover:bg-indigo-700 text-white text-center font-medium py-2 px-4 rounded transition text-sm">Apply</a>
+                </div>
+                <!-- Accountant -->
+                <div class="bg-white rounded-lg shadow-md p-5 job-card transition flex flex-col">
+                    <h3 class="text-xl font-bold text-indigo-700 mb-3">Accountant</h3>
+                    <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=800" alt="Accountant" class="w-full h-40 object-cover rounded-md mb-3">
+                    <p class="text-sm text-gray-500 mt-1"><i class="fas fa-pound-sign mr-1"></i>£18.00 - £25.00 per hour</p>
+                    <p class="text-sm text-gray-600 mt-2"><span class="font-semibold">Benefits:</span> Free accommodation, medical insurance, pension, 25 days holiday.</p>
+                    <p class="text-sm text-gray-600 mt-1 flex-grow"><span class="font-semibold">Requirements:</span> Passport, IOM medical certificate, 2+ years accounting experience, relevant qualification.</p>
+                    <a href="https://wa.me/447475331035?text=Hello%20Nexus%2C%20I'd%20like%20to%20apply%20for%20the%20Accountant%20job%20position.%20Kindly%20take%20me%20through." target="_blank" class="mt-4 inline-block bg-indigo-600 hover:bg-indigo-700 text-white text-center font-medium py-2 px-4 rounded transition text-sm">Apply</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- VISA & IMMIGRATION SERVICES -->
+        <section id="visa-services" class="mb-16 scroll-mt-20">
+            <h2 class="text-2xl font-bold text-indigo-800 border-b-2 border-indigo-200 pb-2 mb-6">Visa & Immigration Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-5 rounded-lg shadow hover:shadow-md transition">
+                    <i class="fas fa-graduation-cap text-indigo-600 text-2xl mb-2"></i>
+                    <h3 class="text-lg font-semibold">Student Visa</h3>
+                    <p class="text-gray-600 text-sm">Guidance for students applying to UK/Canada institutions, including CAS/LOA, financial proof, and visa interview preparation.</p>
+                </div>
+                <div class="bg-white p-5 rounded-lg shadow hover:shadow-md transition">
+                    <i class="fas fa-briefcase text-indigo-600 text-2xl mb-2"></i>
+                    <h3 class="text-lg font-semibold">Work Visa</h3>
+                    <p class="text-gray-600 text-sm">We assist with skilled worker visas, employer sponsorship, and all documentation required for a smooth work permit process.</p>
+                </div>
+                <div class="bg-white p-5 rounded-lg shadow hover:shadow-md transition">
+                    <i class="fas fa-home text-indigo-600 text-2xl mb-2"></i>
+                    <h3 class="text-lg font-semibold">Residency Programs</h3>
+                    <p class="text-gray-600 text-sm">Long-term residency options through investment, skilled migration, or family ties, with expert legal guidance.</p>
+                </div>
+                <div class="bg-white p-5 rounded-lg shadow hover:shadow-md transition">
+                    <i class="fas fa-users text-indigo-600 text-2xl mb-2"></i>
+                    <h3 class="text-lg font-semibold">Family Sponsorship</h3>
+                    <p class="text-gray-600 text-sm">Reunite with family members through sponsorship programs, including spouse, child, and parent visas.</p>
+                </div>
+                <div class="bg-white p-5 rounded-lg shadow hover:shadow-md transition">
+                    <i class="fas fa-globe text-indigo-600 text-2xl mb-2"></i>
+                    <h3 class="text-lg font-semibold">Citizenship by Investment</h3>
+                    <p class="text-gray-600 text-sm">Fast-track citizenship through approved investment programs in select countries, with full legal support.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHY PEOPLE TRUST US -->
+        <section id="why-trust" class="mb-16 scroll-mt-20">
+            <h2 class="text-2xl font-bold text-indigo-800 border-b-2 border-indigo-200 pb-2 mb-6">Why People Trust Us</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-5 rounded-lg shadow flex items-start space-x-4">
+                    <i class="fas fa-check-circle text-green-500 text-2xl"></i>
+                    <div>
+                        <h4 class="font-semibold">Verified Employers</h4>
+                        <p class="text-gray-600 text-sm">We partner only with legitimate, vetted employers across the UK and Canada.</p>
+                    </div>
+                </div>
+                <div class="bg-white p-5 rounded-lg shadow flex items-start space-x-4">
+                    <i class="fas fa-check-circle text-green-500 text-2xl"></i>
+                    <div>
+                        <h4 class="font-semibold">Transparent Process</h4>
+                        <p class="text-gray-600 text-sm">No hidden fees. Clear timelines and honest advice at every step.</p>
+                    </div>
+                </div>
+                <div class="bg-white p-5 rounded-lg shadow flex items-start space-x-4">
+                    <i class="fas fa-check-circle text-green-500 text-2xl"></i>
+                    <div>
+                        <h4 class="font-semibold">24/7 Support</h4>
+                        <p class="text-gray-600 text-sm">Our team is available around the clock to assist with emergencies or questions.</p>
+                    </div>
+                </div>
+                <div class="bg-white p-5 rounded-lg shadow flex items-start space-x-4">
+                    <i class="fas fa-check-circle text-green-500 text-2xl"></i>
+                    <div>
+                        <h4 class="font-semibold">High Success Rate</h4>
+                        <p class="text-gray-600 text-sm">Over 95% visa approval rate for our clients, with thousands of successful placements.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="mb-12 scroll-mt-20">
+            <h2 class="text-2xl font-bold text-indigo-800 border-b-2 border-indigo-200 pb-2 mb-6">Contact Us</h2>
+            <div class="bg-white rounded-lg shadow p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <p class="flex items-center text-gray-700 mb-3">
+                        <i class="fas fa-envelope text-indigo-600 w-6"></i>
+                        <a href="mailto:nexuslimited78@gmail.com" class="hover:underline">nexuslimited78@gmail.com</a>
+                    </p>
+                    <p class="flex items-center text-gray-700 mb-3">
+                        <i class="fas fa-map-marker-alt text-indigo-600 w-6"></i>
+                        <span>42 Chapel Street, Manchester M1 5PL</span>
+                    </p>
+                    <p class="flex items-center text-gray-700 mb-3">
+                        <i class="fas fa-clock text-indigo-600 w-6"></i>
+                        <span>Monday – Friday: 9:00am – 6:00pm</span>
+                    </p>
+                    <p class="flex items-center text-gray-700 mb-3">
+                        <i class="fab fa-whatsapp text-green-600 w-6"></i>
+                        <a href="https://wa.me/447475331035" target="_blank" class="hover:underline">+44 7475 331035</a>
+                    </p>
+                </div>
+                <div class="border-t md:border-t-0 md:border-l pt-4 md:pt-0 md:pl-6">
+                    <h3 class="font-semibold text-gray-800 mb-2">Quick Apply</h3>
+                    <p class="text-sm text-gray-600 mb-3">Send us your CV and passport copy via WhatsApp for immediate processing.</p>
+                    <a href="https://wa.me/447475331035?text=Hello%20Nexus%2C%20I%20would%20like%20to%20apply%20for%20a%20job%20position.%20Kindly%20take%20me%20through." target="_blank" class="inline-block bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-6 rounded transition">Apply</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ========== FLOATING BLACK WHATSAPP APPLY BUTTON ========== -->
+    <a href="https://wa.me/447475331035?text=Hello%20Nexus%2C%20I%20would%20like%20to%20apply%20for%20a%20job%20position.%20Kindly%20take%20me%20through." target="_blank" class="floating-apply" aria-label="Apply via WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- ========== FLOATING 24/7 SUPPORT BUTTON ========== -->
+    <a href="https://wa.me/447475331035" target="_blank" class="floating-support" aria-label="24/7 Support">
+        <i class="fas fa-headset"></i>
+        <span class="support-label">24/7 Support</span>
+    </a>
+
+    <!-- ========== FOOTER (BLACK with neon buttons + dancing emoji) ========== -->
+    <footer class="bg-black text-gray-300 pt-10 pb-8 mt-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Company row + emoji -->
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 border-b border-gray-800 pb-8">
+                <div class="flex items-center gap-3">
+                    <!-- Mini glass logo in footer -->
+                    <div class="glass-logo">
+                        <svg width="36" height="36" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                            <polygon points="32,2 60,17 60,47 32,62 4,47 4,17" fill="url(#gradA)" opacity="0.95"/>
+                            <polygon points="32,10 53,21 53,43 32,54 11,43 11,21" fill="url(#gradB)" opacity="0.55"/>
+                            <path d="M22 44 V20 L42 44 V20" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                            <circle cx="32" cy="32" r="3.5" fill="#ffffff" opacity="0.9"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="text-white font-bold">NEXUS PLACEMENT LTD</p>
+                        <p class="text-xs text-gray-400">42 Chapel Street, Manchester M1 5PL</p>
+                        <p class="text-xs text-gray-400">nexuslimited78@gmail.com · +44 7475 331035</p>
+                    </div>
+                </div>
+
+                <!-- Hey there dancing emoji -->
+                <div class="flex items-center gap-2 text-white">
+                    <span class="dancing-emoji">👋</span>
+                    <span class="text-sm font-medium text-gray-300">Hey there! Ready to start your journey?</span>
+                    <span class="dancing-emoji">💃</span>
+                </div>
+            </div>
+
+            <!-- Neon social / action buttons -->
+            <div class="flex flex-wrap justify-center md:justify-start gap-4 mt-8">
+                <a href="https://wa.me/447475331035" target="_blank" class="neon-btn neon-whatsapp">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <!-- Facebook button now unresponsive (no href, pointer-events-none) -->
+                <span class="neon-btn neon-facebook pointer-events-none opacity-80 cursor-default">
+                    <i class="fab fa-facebook-f"></i> Facebook
+                </span>
+                <!-- Email button uses mailto -->
+                <a href="mailto:nexuslimited78@gmail.com" class="neon-btn neon-email">
+                    <i class="fas fa-envelope"></i> Email
+                </a>
+                <a href="#contact" class="neon-btn neon-subscribe">
+                    <i class="fas fa-bell"></i> Subscribe
+                </a>
+            </div>
+
+            <!-- Bottom line -->
+            <div class="text-center text-xs text-gray-500 mt-8">
+                © 2025 Nexus Placement Ltd – UK & Canada Job Placements & Immigration Services. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== MOBILE MENU TOGGLE ========== -->
+    <script>
+        const btn = document.getElementById('mobile-menu-button');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
+```
